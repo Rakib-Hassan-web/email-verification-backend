@@ -2,7 +2,7 @@
 
 const express = require('express')
 const MongoDBDATA = require('./dbConfig')
-const dotenv = require('dotenv')
+require('dotenv').config()
 const app = express()
 app.use(express.json())
 

@@ -1,22 +1,28 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "gmail",
+  host: "smtp.gmail.com",
   port: 587,
-  secure: false, // Use true for port 465, false for port 587
+  secure: false,
   auth: {
     user: "rakibhassan.web@gmail.com",
-    pass: "vrau iunk tijo amcf",
+    pass: "vrau iunk tijo amcf", // App password
   },
 });
 
 const sendEmail = async ({ email, subject, otp }) => {
-  await transporter.sendMail({
-    from: '"E-Commerce" <maddison53@ethereal.email>',
-    to: email,
-    subject: subject,
-    html: `<b>Email verification OTP: ${otp}</b>`, // HTML version of the message
-  });
+  try {
+    await transporter.sendMail({
+      from: '"E-Commerce" <rakibhassan.web@gmail.com>',
+      to: email,
+      subject,
+      html: `<h3>Your OTP Code</h3><p><b>${otp}</b></p>`,
+    });
+
+    console.log("Email sent successfully");
+  } catch (error) {
+    console.log("Email error:", error);
+  }
 };
 
 module.exports = { sendEmail };

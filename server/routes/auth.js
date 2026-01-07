@@ -5,7 +5,7 @@ const { registration } = require('../controllers/authcontrollers')
 const routee =express.Router()
 
 
-routee.get('/registration' , registration)
+routee.post('/registration' , registration)
 
 
 module.exports= routee
